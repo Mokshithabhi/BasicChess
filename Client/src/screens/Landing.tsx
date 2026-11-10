@@ -15,9 +15,9 @@ export default Landing;
 const ChessSideBar = () => {
   return (
     <div className="flex text-white flex-col w-1/7 bg-[rgba(0,0,0,.2)] h-screen px-5 py-5 gap-10">
+      {/* <div>chess1</div>
       <div>chess1</div>
-      <div>chess1</div>
-      <div>chess1</div>
+      <div>chess1</div> */}
     </div>
   );
 };

@@ -19,8 +19,7 @@ const ChessBoard = ({
 }) => {
   const [from, setFrom] = useState<null | Square>(null);
 
-  const handleSquare=(squareIndex: Square )=>{
-    
+  const handleSquare = (squareIndex: Square) => {
     if (!from) {
       setFrom(squareIndex);
     } else {
@@ -33,14 +32,14 @@ const ChessBoard = ({
               to: squareIndex,
             },
           },
-        })
+        }),
       );
       setFrom(null);
-      chess.move({ from, to:squareIndex});
+      chess.move({ from, to: squareIndex });
       setBoard(chess.board());
     }
-  }
-  
+  };
+
   // const debouncingHandler = debouncingFunc(handleSquare, 5000);
   return (
     <div className="text-white-200 ">
@@ -54,8 +53,8 @@ const ChessBoard = ({
               return (
                 <div
                   key={j}
-                //   draggable={true}
-                  onClick={() =>handleSquare(squareIndex)}
+                  //   draggable={true}
+                  onClick={() => handleSquare(squareIndex)}
                   className={`w-16 h-16 ${
                     (i + j) % 2 == 0 ? "bg-white" : "bg-green-500"
                   }`}
@@ -64,7 +63,7 @@ const ChessBoard = ({
                     {square ? (
                       <img
                         className="w-8"
-                        src={`/src/assets/${
+                        src={`/assets/${
                           square?.color === "b"
                             ? square?.type
                             : `${square?.type?.toUpperCase()} white`
