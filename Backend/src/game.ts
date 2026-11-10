@@ -47,7 +47,6 @@ export class Game {
     }
     try {
       this.board.move(move);
-      console.log("board",this.board)
     } catch (e) {
       console.error(`error generated while moving : ${e}`);
     }
