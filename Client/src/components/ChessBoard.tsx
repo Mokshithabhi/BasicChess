@@ -17,8 +17,31 @@ const ChessBoard = ({
   setBoard: any;
   chess: any;
 }) => {
-  console.log("board", board);
   const [from, setFrom] = useState<null | Square>(null);
+
+  const handleSquare=(squareIndex: Square )=>{
+    
+    if (!from) {
+      setFrom(squareIndex);
+    } else {
+      socket.send(
+        JSON.stringify({
+          type: MOVE,
+          payload: {
+            move: {
+              from,
+              to: squareIndex,
+            },
+          },
+        })
+      );
+      setFrom(null);
+      chess.move({ from, to:squareIndex});
+      setBoard(chess.board());
+    }
+  }
+  
+  // const debouncingHandler = debouncingFunc(handleSquare, 5000);
   return (
     <div className="text-white-200 ">
       {(board || []).map((row, i) => {
@@ -28,36 +51,15 @@ const ChessBoard = ({
               const squareIndex = (String.fromCharCode(97 + (j % 8)) +
                 "" +
                 (8 - i)) as Square;
-            //   console.log("squareIndex=", squareIndex, from);
               return (
                 <div
                   key={j}
                 //   draggable={true}
-                  onClick={() => {
-                    if (!from) {
-                      setFrom(squareIndex);
-                    } else {
-                      socket.send(
-                        JSON.stringify({
-                          type: MOVE,
-                          payload: {
-                            move: {
-                              from,
-                              to: squareIndex,
-                            },
-                          },
-                        })
-                      );
-                      setFrom(null);
-                      chess.move({ from, to: squareIndex });
-                      setBoard(chess.board());
-                    }
-                  }}
+                  onClick={() =>handleSquare(squareIndex)}
                   className={`w-16 h-16 ${
                     (i + j) % 2 == 0 ? "bg-white" : "bg-green-500"
                   }`}
                 >
-                  {/* <div className="w-full justify-center flex h-full"> */}
                   <div className="h-full justify-center flex items-center flex-col cursor-pointer">
                     {square ? (
                       <img

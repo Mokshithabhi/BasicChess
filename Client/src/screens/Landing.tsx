@@ -3,7 +3,7 @@ import chess from "../assets/chess.png";
 
 const Landing = () => {
   return (
-    <div className="flex justify-start  bg-gray-800 w-full gap-3 text-white">
+    <div className="flex    bg-gray-800 w-full gap-3 text-white">
       <ChessSideBar />
       <ChessLandingPage />
     </div>

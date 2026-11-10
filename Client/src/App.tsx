@@ -1,19 +1,19 @@
-
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Landing from './screens/Landing'
-import Game from './screens/Game'
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Landing from "./screens/Landing";
+import Game from "./screens/Game";
 
 function App() {
-
   return (
-    <BrowserRouter >
-      <Routes>
-        <Route path="/" element={<Landing />} /> 
-        <Route path="/game" element={<Game />} /> 
-      </Routes>
-    </BrowserRouter>
-  )
+    <div className="bg-white h-screen w-screen">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/game" element={<Game />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
-export default App
+export default App;
