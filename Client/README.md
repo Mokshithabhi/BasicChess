@@ -1,50 +1,27 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Chess Multiplayer
 
-Currently, two official plugins are available:
+Play a game of chess against another player in real time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## How to Play
 
-## Expanding the ESLint configuration
+1. Make sure the game server is running and open the game in two browser windows or on two devices.
+2. Both players connect to the game and click **Play**. The server matches the first two players waiting to play.
+3. To move, click the square containing your piece, then click the square you want to move it to.
+4. Players take turns. White moves first.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Chess Rules
 
-- Configure the top-level `parserOptions` property like this:
+- The goal is to checkmate your opponent's king: put it under attack so it has no legal move to escape.
+- Each piece moves differently: pawns move forward and capture diagonally; rooks move horizontally or vertically; bishops move diagonally; queens move in any straight line; knights move in an L shape and can jump over pieces; kings move one square in any direction.
+- You cannot make a move that leaves your own king in check.
+- A player wins by checkmate. A game is a draw if neither player can make a legal move and the king is not in check (stalemate).
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Controls
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Click a piece to select its starting square.
+- Click another square to submit the move.
+- Moves are sent to the server and relayed to the other player.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
